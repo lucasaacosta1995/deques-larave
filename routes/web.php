@@ -20,9 +20,12 @@ Auth::routes();
 
 Route::get('Proyecto/verEngines','ProyectoController@verEngines');
 Route::get('Proyecto/index/{q}','ProyectoController@index');
+Route::get('Proyecto/index','ProyectoController@index');
+
 Route::get('Proyecto/verDocuments','ProyectoController@verDocuments');
 Route::get('Proyecto/getUltimoProyecto','ProyectoController@getUltimoProyecto');
 Route::get('Proyecto/actualizarProyectosSwiftype','ProyectoController@actualizarProyectosSwiftype');
+Route::get('Proyecto/actualizarProyectosSwiftype/{id}','ProyectoController@actualizarProyectosSwiftype');
 Route::get('Proyecto/crearDocument','ProyectoController@crearDocument');
 
 Route::get('/home', 'HomeController@index')->name('home');
