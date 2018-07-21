@@ -99,14 +99,22 @@ class ProyectoController extends Controller
         }
         return $idUltimo;
     }
-    public function actualizarProyectosSwiftype(){
+    public function actualizarProyectosSwiftype($idProyecto = 0){
         ini_set('memory_limit', '-1');
         set_time_limit(0);
         $swiftype = new Swiftype();
         $ultimoProyectoCargadoSwft = $this->getUltimoProyecto();
-        $proyectos = jo_proyecto::with(['autor', 'congreso.provincia','tramite','tipo','firmantes.politico','preguntas_respuestas','etiquetas.etiqueta'])
+        if($idProyecto > 0){
+            $proyectos = jo_proyecto::with(['autor', 'congreso.provincia','tramite','tipo','firmantes.politico','preguntas_respuestas','etiquetas.etiqueta'])
             ->where('status',1)
-            ->where('id_proyecto','>',$ultimoProyectoCargadoSwft)->orderBy('id_proyecto', 'asc')->limit(1000)->get();
+            ->where('id_proyecto','=',$idProyecto)->orderBy('id_proyecto', 'asc')->limit(1)->get();
+        }
+        else{
+          $proyectos = jo_proyecto::with(['autor', 'congreso.provincia','tramite','tipo','firmantes.politico','preguntas_respuestas','etiquetas.etiqueta'])
+            ->where('status',1)
+            ->where('id_proyecto','>',$ultimoProyectoCargadoSwft)->orderBy('id_proyecto', 'asc')->limit(1000)->get();  
+        }
+        
         $arrayComplete = array();
         foreach ($proyectos as $keyProyecto => $valueProyecto) {
             $externalId = $valueProyecto->id_proyecto;
