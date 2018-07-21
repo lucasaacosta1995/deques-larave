@@ -116,8 +116,8 @@ class ProyectoController extends Controller
             $detenciones = $valueProyecto->votos()->where('voto','D')->get()->toArray();
             $impulsos = $valueProyecto->votos()->where('voto','I')->get()->toArray();
 
-            $preguntas = $valueProyecto->preguntas_respuestas()->where('pregunta_id',null)->get()->toArray();
-            $respuestas = $valueProyecto->preguntas_respuestas()->where('pregunta_id','!=',null)->get()->toArray();
+            $preguntas = $valueProyecto->preguntas_respuestas()->where('match',null)->where('status',1)->where('pregunta_id',null)->get()->toArray();
+            $respuestas = $valueProyecto->preguntas_respuestas()->where('match','!=',null)->where('status',1)->where('pregunta_id',null)->get()->toArray();
 
             $firmantes = $valueProyecto->firmantes;
             $firmantesArray = array();
