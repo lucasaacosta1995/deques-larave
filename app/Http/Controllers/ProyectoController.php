@@ -112,7 +112,7 @@ class ProyectoController extends Controller
         else{
           $proyectos = jo_proyecto::with(['autor', 'congreso.provincia','tramite','tipo','firmantes.politico','preguntas_respuestas','etiquetas.etiqueta'])
             ->where('status',1)
-            ->where('id_proyecto','>',$ultimoProyectoCargadoSwft)->orderBy('id_proyecto', 'asc')->limit(1000)->get();  
+            ->where('id_proyecto','>',$ultimoProyectoCargadoSwft)->orderBy('id_proyecto', 'asc')->limit(2000)->get();  
         }
         
         $arrayComplete = array();
