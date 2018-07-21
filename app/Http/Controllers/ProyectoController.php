@@ -63,12 +63,16 @@ class ProyectoController extends Controller
         die(var_dump($client->document_type('5b19eef6d3b6875c02474bce')));
     }
 
-    public function crearDocument(){
+    public function crearDocument($nameDocument = ''){
         $client = new Swiftype();
-//        $client->destroy_document_type('dequesetrata', 'proyectos');
+        $client->create_document_type('dequesetrata', $nameDocument);
+        die(var_dump($client->document_type('5b19eef6d3b6875c02474bce')));
+    }
 
-
-        $client->create_document_type('dequesetrata', 'proyectos');
+    public function deleteDocument($nameDocument = ''){
+        $client = new Swiftype();
+        $client->destroy_document_type('dequesetrata', $nameDocument);
+        die(var_dump($client->document_type('5b19eef6d3b6875c02474bce')));
     }
     public function validarExistencia($id){
         $client = new Swiftype();
@@ -112,7 +116,7 @@ class ProyectoController extends Controller
         else{
           $proyectos = jo_proyecto::with(['autor', 'congreso.provincia','tramite','tipo','firmantes.politico','preguntas_respuestas','etiquetas.etiqueta'])
             ->where('status',1)
-            ->where('id_proyecto','>',$ultimoProyectoCargadoSwft)->orderBy('id_proyecto', 'asc')->limit(2000)->get();  
+            ->where('id_proyecto','>',$ultimoProyectoCargadoSwft)->orderBy('id_proyecto', 'asc')->limit(1000)->get();  
         }
         
         $arrayComplete = array();
