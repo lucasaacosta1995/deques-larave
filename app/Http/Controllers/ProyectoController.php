@@ -116,7 +116,7 @@ class ProyectoController extends Controller
         else{
           $proyectos = jo_proyecto::with(['autor', 'congreso.provincia','tramite','tipo','firmantes.politico','preguntas_respuestas','etiquetas.etiqueta'])
             ->where('status',1)
-            ->where('id_proyecto','>',$ultimoProyectoCargadoSwft)->orderBy('id_proyecto', 'asc')->limit(1000)->get();  
+            ->where('id_proyecto','>',$ultimoProyectoCargadoSwft)->orderBy('id_proyecto', 'asc')->limit(1000)->get();
         }
         
         $arrayComplete = array();
@@ -169,7 +169,7 @@ class ProyectoController extends Controller
                 ),array(
                     "name"=>"tipo",
                     "value"=>is_null($valueProyecto->tipo) ? []:[$valueProyecto->tipo->tipo_proyecto],
-                    "type"=>"enum"
+                    "type"=>"string"
                 ),
                 array(
                     "name"=>"nombre",
@@ -184,42 +184,42 @@ class ProyectoController extends Controller
                 array(
                     "name"=>"autor",
                     "value"=>is_null($valueProyecto->autor) ? []:[$valueProyecto->autor->name],
-                    "type"=>"enum"
+                    "type"=>"string"
                 ),
                 array(
                     "name"=>"firmantes",
                     "value"=>$firmantesArray,
-                    "type"=>"enum"
+                    "type"=>"string"
                 ),
                 array(
                     "name"=>"expediente",
                     "value"=>is_null($valueProyecto->expediente) ? []:[$valueProyecto->expediente],
-                    "type"=>"enum"
+                    "type"=>"string"
                 ),
                 array(
                     "name"=>"legislatura",
                     "value"=>is_null($valueProyecto->congreso) ? []:[$valueProyecto->congreso->name],
-                    "type"=>"enum"
+                    "type"=>"string"
                 ),
                 array(
                     "name"=>"sinonimos",
                     "value"=>$sinonimosArray,
-                    "type"=>"enum"
+                    "type"=>"string"
                 ),
                 array(
                     "name"=>"temas",
                     "value"=>$temasArray,
-                    "type"=>"enum"
+                    "type"=>"string"
                 ),
                 array(
                     "name"=>"lugares",
                     "value"=>$lugaresArray,
-                    "type"=>"enum"
+                    "type"=>"string"
                 ),
                 array(
                     "name"=>"estado_parlamentario",
                     "value"=>is_null($valueProyecto->tramite) ? []:[$valueProyecto->tramite->name],
-                    "type"=>"enum"
+                    "type"=>"string"
                 ),
                 array(
                     "name"=>"resumen",
